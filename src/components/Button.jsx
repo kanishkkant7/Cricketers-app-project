@@ -14,7 +14,6 @@ const Button = forwardRef(({ buttonTitle }, ref) => {
   );
 });
 
-// This helps with debugging - gives the component a proper name in React DevTools
 Button.displayName = 'Button';
 
 export default Button;

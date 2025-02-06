@@ -5,11 +5,8 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 font-lexend">
-      {/* Main Footer Content */}
       <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Using grid with specific column spans for better control */}
         <div className="grid grid-cols-12 gap-8">
-          {/* Brand Section - Takes up the left side */}
           <div className="col-span-12 md:col-span-6 flex flex-col items-center md:items-start">
             <div className="flex items-center gap-2">
               <MdOutlineSportsCricket size={24} className="text-blue-600" />
@@ -20,10 +17,8 @@ function Footer() {
             </p>
           </div>
 
-          {/* Empty middle section for spacing */}
           <div className="hidden md:block md:col-span-2"></div>
 
-          {/* Connect With Us - Takes up the right side */}
           <div className="col-span-12 md:col-span-4 flex flex-col items-center md:items-start">
             <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
             <div className="flex gap-4">

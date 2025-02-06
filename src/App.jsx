@@ -6,8 +6,9 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useEffect } from "react";
-
-
+import { useLocation } from "react-router-dom";
+import useTitle from "./hooks/useTitle";
+import { Link } from "react-router-dom";
 
 
 
@@ -19,6 +20,16 @@ function App() {
   const cricketerDetailsButtonRef = useRef(null);
   const navLeftRef = useRef(null);
   const navRightRef = useRef(null);
+  // To check current location
+  const currLocation = useLocation();
+
+  useTitle({
+    currLocation: location.pathname,  
+    path: "/",                        
+    docTitle: "Welcome to Cricketer App"  
+  });
+  
+
 
   useGSAP(() => {
     const timeline = gsap.timeline();
@@ -48,18 +59,18 @@ function App() {
 
   return (
     <div className="bg-black">
-      <Navbar ref={{ leftRef: navLeftRef, rightRef: navRightRef }} />
       <div className="text-center mt-40">
         <span ref={titleRef} className="text-5xl text-white font-lexend p-5">
           Welcome to Cricketer's App
         </span>
 
         <div className="m-5 pb-96 space-x-5">
+        <Link to="/all-cricketers">
           <Button ref={cricketersButtonRef} buttonTitle={"Cricketers"} />
+          </Link>
           <Button ref={cricketerDetailsButtonRef} buttonTitle={"Cricketers Details"} />
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
