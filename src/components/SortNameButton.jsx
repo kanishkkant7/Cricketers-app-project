@@ -1,25 +1,40 @@
-import React, { useState } from 'react'
-import { RiSortAlphabetAsc } from "react-icons/ri";
-import { RiSortAlphabetDesc } from "react-icons/ri";
+import React from 'react';
+import { RiSortAlphabetAsc, RiSortAlphabetDesc } from "react-icons/ri";
+import { useSortContext } from '../context/SortContext';
 
 function SortNameButton() {
-    const [sortByName, setSortByName] = useState(false);
+    const { sortType, setSortType, setHighlightState } = useSortContext();
+
+    const handleNameSort = () => {
+        // When not in descending, switch to descending (Z to A)
+        if (sortType !== "Name Descending") {
+            setSortType("Name Descending");
+            setHighlightState("name");
+        } else {
+            // When in descending, switch to ascending (A to Z)
+            setSortType("Name Ascending");
+            setHighlightState("name");
+        }
+    };
 
     return (
         <div className='bg-gray-800 text-gray-400 font-lexend rounded-full p-4 flex flex-row'>
             <button 
-                onClick={() => setSortByName(!sortByName)}
-                className='relative'
+                onClick={handleNameSort}
+                className='relative w-[30px] h-[30px] flex items-center justify-center'
             >
-                <div className={`absolute transition-opacity duration-300 ${sortByName ? 'opacity-100' : 'opacity-0'}`}>
-                    <RiSortAlphabetAsc size={30}/> 
-                </div>
-                <div className={`transition-opacity duration-300 ${sortByName ? 'opacity-0' : 'opacity-100'}`}>
-                    <RiSortAlphabetDesc size={30}/>
+                <div className="transition-all duration-300">
+                    {sortType === "Name Ascending" ? (
+                        <RiSortAlphabetAsc size={30} className="transform transition-transform duration-300"/>
+                    ) : sortType === "Name Descending" ? (
+                        <RiSortAlphabetDesc size={30} className="transform transition-transform duration-300"/>
+                    ) : (
+                        <RiSortAlphabetAsc size={30} className="transform transition-transform duration-300"/>
+                    )}
                 </div>
             </button>
         </div>
-    )
+    );
 }
 
 export default SortNameButton;

@@ -1,25 +1,44 @@
-import React, { useState } from 'react'
-import { FaHourglassStart } from "react-icons/fa";
-import { FaHourglassEnd } from "react-icons/fa";
+import React from 'react';
+import { FaHourglassStart, FaHourglassEnd } from "react-icons/fa";
+import { useSortContext } from '../context/SortContext';
 
 function SortAgeButton() {
-    const [sortByAge, setSortByAge] = useState(false);
+    const { sortType, setSortType, setHighlightState } = useSortContext();
+
+    const handleAgeSort = () => {
+        // When in None or Ascending state, switch to Descending (oldest first)
+        if (sortType !== "Age Descending") {
+            setSortType("Age Descending");
+            setHighlightState("age");
+        } 
+        // When in Descending state, switch to Ascending (youngest first)
+        else {
+            setSortType("Age Ascending");
+            setHighlightState("age");
+        }
+    };
 
     return (
         <div className='bg-gray-800 text-gray-400 font-lexend rounded-full p-4 flex flex-row'>
             <button 
-                onClick={() => setSortByAge(!sortByAge)}
-                className='relative'
+                onClick={handleAgeSort}
+                className='relative w-[30px] h-[30px] flex items-center justify-center'
             >
-                <div className={`absolute transition-opacity duration-300 ${sortByAge ? 'opacity-100' : 'opacity-0'}`}>
-                    <FaHourglassStart size={30}/> 
-                </div>
-                <div className={`transition-opacity duration-300 ${sortByAge ? 'opacity-0' : 'opacity-100'}`}>
-                    <FaHourglassEnd size={30}/>
+                <div className="transition-all duration-300">
+                    {sortType === "Age Ascending" ? (
+                        // Show hourglass start for ascending (less sand = younger first)
+                        <FaHourglassStart size={30} className="transform transition-transform duration-300"/>
+                    ) : sortType === "Age Descending" ? (
+                        // Show hourglass end for descending (more sand = older first)
+                        <FaHourglassEnd size={30} className="transform transition-transform duration-300"/>
+                    ) : (
+                        // Default state shows start hourglass
+                        <FaHourglassStart size={30} className="transform transition-transform duration-300"/>
+                    )}
                 </div>
             </button>
         </div>
-    )
+    );
 }
 
 export default SortAgeButton;

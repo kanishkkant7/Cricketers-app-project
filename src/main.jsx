@@ -5,16 +5,19 @@ import App from "./App.jsx";
 import Layout from "./components/Layout.jsx"; // Common layout
 import { BrowserRouter, Routes, Route } from "react-router-dom"; // For routing
 import Cricketers from "./pages/Cricketers.jsx"; // component for /all-cricketers route
+import { SortProvider } from "./context/SortContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
+    <SortProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<App />} />
           <Route path="all-cricketers" element={<Cricketers/>} />
         </Route>
       </Routes>
+      </SortProvider>
     </BrowserRouter>
   </StrictMode>
 );

@@ -11,6 +11,7 @@ function PlayerBar({ playerName, playerPoints, dob , playerType,highlightAttribu
       <div className="flex justify-between items-center">
         <span className="text-2xl font-bold mx-2 text-white pb-6 px-4 pt-2">
           {playerName}
+          
           <div className="text-lg font-lexend font-normal text-gray-500 flex flex-row space-x-2">
           <span className={`${highlightAttribute==="points" ? "text-gray-200" : ""}`}>Points: {playerPoints} |</span>
             <span className={`${highlightAttribute=="age"? "text-gray-200":""}`}> Age: {playerAge} years |</span>

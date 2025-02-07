@@ -1,16 +1,17 @@
-import React from 'react'
-import { BiCricketBall } from "react-icons/bi";  // For bowlers
-import { GiCricketBat } from "react-icons/gi";   // For batsmen
-import { MdSportsCricket } from "react-icons/md"; // For all rounders
-import { GiWinterGloves } from "react-icons/gi";  // For wicket keepers
+import React from 'react';
+import { BiCricketBall } from "react-icons/bi";
+import { GiCricketBat } from "react-icons/gi";
+import { MdSportsCricket } from "react-icons/md";
+import { GiWinterGloves } from "react-icons/gi";
+import { useSortContext } from '../context/SortContext';
 
-function SortTypeButton({ sortType, setSortType, setHighlightState }) {
+function SortTypeButton() {
+    const { sortType, setSortType, setHighlightState } = useSortContext();
+
     const handleTypeClick = () => {
+        // We're creating a cycle between the four player types
+        // The logic follows: Batsman -> Bowler -> All Rounder -> Wicket Keeper -> back to Batsman
         switch(sortType) {
-            case "None":
-                setSortType("Type: Batsman");
-                setHighlightState("type");
-                break;
             case "Type: Batsman":
                 setSortType("Type: Bowler");
                 setHighlightState("type");
@@ -23,24 +24,15 @@ function SortTypeButton({ sortType, setSortType, setHighlightState }) {
                 setSortType("Type: Wicket Keeper");
                 setHighlightState("type");
                 break;
-            default:
-                setSortType("None");
-                setHighlightState("");
-        }
-    };
-
-    const getCurrentIcon = () => {
-        switch(sortType) {
-            case "Type: Batsman":
-                return <GiCricketBat size={30}/>;
-            case "Type: Bowler":
-                return <BiCricketBall size={30}/>;
-            case "Type: All Rounder":
-                return <MdSportsCricket size={30}/>;
             case "Type: Wicket Keeper":
-                return <GiWinterGloves size={30}/>;
+                setSortType("Type: Batsman");
+                setHighlightState("type");
+                break;
             default:
-                return <MdSportsCricket size={30}/>;
+                // This case handles the initial "None" state or any unexpected states
+                // It starts the cycle with Batsman
+                setSortType("Type: Batsman");
+                setHighlightState("type");
         }
     };
 
@@ -48,14 +40,25 @@ function SortTypeButton({ sortType, setSortType, setHighlightState }) {
         <div className='bg-gray-800 text-gray-400 font-lexend rounded-full p-4 flex flex-row'>
             <button 
                 onClick={handleTypeClick}
-                className='relative hover:text-white transition-colors duration-300'
+                className='relative w-[30px] h-[30px] flex items-center justify-center'
             >
-                <div className={`transition-all duration-300 transform ${sortType !== "None" ? 'scale-110' : 'scale-100'}`}>
-                    {getCurrentIcon()}
+                <div className="transition-all duration-300">
+                    {sortType === "Type: Batsman" ? (
+                        <GiCricketBat size={30} className="transform transition-transform duration-300"/>
+                    ) : sortType === "Type: Bowler" ? (
+                        <BiCricketBall size={30} className="transform transition-transform duration-300"/>
+                    ) : sortType === "Type: All Rounder" ? (
+                        <MdSportsCricket size={30} className="transform transition-transform duration-300"/>
+                    ) : sortType === "Type: Wicket Keeper" ? (
+                        <GiWinterGloves size={30} className="transform transition-transform duration-300"/>
+                    ) : (
+                        // This is our initial state icon when sortType is "None"
+                        <MdSportsCricket size={30} className="transform transition-transform duration-300"/>
+                    )}
                 </div>
             </button>
         </div>
-    )
+    );
 }
 
 export default SortTypeButton;
