@@ -1,3 +1,4 @@
+//components/SearchBar.jsx
 import React from 'react'
 import { HiMagnifyingGlass } from "react-icons/hi2"
 

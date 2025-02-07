@@ -1,11 +1,9 @@
+// App.jsx
 import React from "react";
 import Button from "./components/Button";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import gsap from "gsap";
-import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import useTitle from "./hooks/useTitle";
 import { Link } from "react-router-dom";

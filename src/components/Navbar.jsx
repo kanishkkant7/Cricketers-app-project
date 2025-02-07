@@ -1,5 +1,5 @@
-// components/Navbar.js
-import React, { forwardRef } from "react";
+// components/Navbar.jsx
+import React, { forwardRef } from "react"; //forward refs to add animation
 import { MdOutlineSportsCricket } from "react-icons/md";
 import SearchBar from "./SearchBar";
 

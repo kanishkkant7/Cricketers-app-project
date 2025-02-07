@@ -1,3 +1,4 @@
+//components/Footer.jsx
 import React from "react";
 import { MdOutlineSportsCricket } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa";

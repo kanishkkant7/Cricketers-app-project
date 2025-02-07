@@ -1,3 +1,5 @@
+//hooks/useTitle.jsx
+//Custom hook change title browser tab title with underlying mechanism of useEffect.
 import { useEffect } from 'react';
 
 export default function useTitle({ currLocation, path, docTitle }) {

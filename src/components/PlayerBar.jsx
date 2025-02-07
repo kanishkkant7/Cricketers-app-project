@@ -1,6 +1,8 @@
 import React from "react";
 import { FaArrowCircleRight } from "react-icons/fa";
 
+
+
 function PlayerBar({ playerName, playerPoints, dob }) {
   const playerAge = Math.floor((new Date() - new Date(dob)) / (365.25 * 24 * 60 * 60 * 1000));
 
@@ -15,7 +17,7 @@ function PlayerBar({ playerName, playerPoints, dob }) {
           </div>
         </span>
         <button className="mx-2">
-          <FaArrowCircleRight size={30} />
+          <FaArrowCircleRight size={30}/>
         </button>
       </div>
     </div>

@@ -15,7 +15,7 @@ function Layout({ children }) {
   useGSAP(() => {
     const timeline = gsap.timeline();
     
-    // Animate
+    // Animate Navbar
     timeline
       .from(navLeftRef.current, {
         opacity: 0,

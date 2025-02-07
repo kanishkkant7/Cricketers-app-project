@@ -1,4 +1,4 @@
-// components/Button.js
+// components/Button.jsx
 
 
 import React, { forwardRef } from 'react';
