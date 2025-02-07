@@ -64,7 +64,7 @@ function App() {
 
         <div className="m-5 pb-96 space-x-5">
         <Link to="/all-cricketers">
-          <Button ref={cricketersButtonRef} buttonTitle={"Cricketers"} />
+          <Button ref={cricketersButtonRef} buttonTitle={"See All Cricketers"} />
           </Link>
           <Button ref={cricketerDetailsButtonRef} buttonTitle={"Cricketers Details"} />
         </div>
