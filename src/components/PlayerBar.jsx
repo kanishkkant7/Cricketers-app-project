@@ -3,7 +3,7 @@ import { FaArrowCircleRight } from "react-icons/fa";
 
 
 
-function PlayerBar({ playerName, playerPoints, dob }) {
+function PlayerBar({ playerName, playerPoints, dob , playerType}) {
   const playerAge = Math.floor((new Date() - new Date(dob)) / (365.25 * 24 * 60 * 60 * 1000));
 
   return (
@@ -13,7 +13,8 @@ function PlayerBar({ playerName, playerPoints, dob }) {
           {playerName}
           <div className="text-lg font-lexend font-normal text-gray-400 flex flex-row space-x-2">
             <span> Points: {playerPoints} |</span>
-            <span> Age: {playerAge} years</span>
+            <span> Age: {playerAge} years |</span>
+            <span> Type : {playerType} </span>
           </div>
         </span>
         <button className="mx-2">
