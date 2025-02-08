@@ -2,6 +2,7 @@
 import React from "react";
 import { MdOutlineSportsCricket } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { IoIosGlobe } from "react-icons/io";
 
 function Footer() {
   return (
@@ -14,19 +15,30 @@ function Footer() {
               <span className="text-xl font-semibold">Cricketer App</span>
             </div>
             <p className="mt-4 text-gray-400 text-sm">
-              Your ultimate destination for cricket statistics and player analysis.
+              Your ultimate destination for cricket statistics and player
+              analysis.
             </p>
           </div>
 
-          <div className="hidden md:block md:col-span-2"></div>
+          <div className="hidden md:block md:col-span-2" />
 
           <div className="col-span-12 md:col-span-4 flex flex-col items-center md:items-start">
-            <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
+            <h3 className="text-lg font-semibold mb-4">Connect</h3>
             <div className="flex gap-4">
-              <a href="#" className="text-gray-400 hover:text-blue-600 transition-colors">
-                <FaGithub size={24} />
+              <a
+                href="http://www.kanishks-portfolio.netlify.app/"
+                className="text-gray-400 hover:text-blue-600 transition-colors"
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <IoIosGlobe size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-blue-600 transition-colors">
+              <a
+                href="https://www.linkedin.com/in/kanishk-kant-746638284"
+                className="text-gray-400 hover:text-blue-600 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaLinkedin size={24} />
               </a>
             </div>
@@ -34,7 +46,7 @@ function Footer() {
         </div>
 
         {/* Divider Line */}
-        <div className="border-t border-gray-800 my-8"></div>
+        <div className="border-t border-gray-800 my-8" />
 
         {/* Copyright Text */}
         <div className="text-center text-gray-500 text-sm">
