@@ -5,7 +5,7 @@ import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useDebounce } from 'use-debounce'; 
 import { useSearch } from '../hooks/useSearch';
 import { useNavigate } from 'react-router-dom';
-// Kebabcase from lodash package to create slugs from player name. For example - Virat Kohli becomes virat-kohli
+// Kebabcase from lodash pac to create slugs from player name. For example - Virat Kohli becomes virat-kohli
 import kebabCase from 'lodash/kebabCase';
 
 function SearchBar() {

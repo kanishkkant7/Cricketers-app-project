@@ -10,8 +10,9 @@ function SortTypeButton() {
     const { sortType, updateSortType, setHighlightState } = useSortContext();
 
     const handleTypeClick = () => {
-        // We're creating a cycle between the four player types
+        // Created a cycle between the four player types
         // The logic follows: Batsman -> Bowler -> All Rounder -> Wicket Keeper -> back to Batsman
+        // The icons are self explanatory
         switch(sortType) {
             case "Type: Batsman":
                 updateSortType("Type: Bowler");

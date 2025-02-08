@@ -23,7 +23,7 @@ function PlayerBar({ playerName, playerPoints, dob, playerType, highlightAttribu
 
     return (
         <div className="transform-gpu">
-        <div className="text-white bg-gray-800 p-4 rounded-full m-5">
+        <div className="text-white bg-gray-800 p-4 rounded-full m-5 ">
             <div className="flex justify-between items-center">
                 <span className="text-2xl font-bold mx-2 text-white pb-6 px-4 pt-2">
                     {playerName}
