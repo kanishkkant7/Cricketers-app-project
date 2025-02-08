@@ -28,13 +28,13 @@ function App() {
       // First animate the title fading in
       .from(titleRef.current, {
         opacity: 0,
-        duration: 3,
+        duration: 2,
       })
       // Then animate the single button sliding in from the left
       .from(cricketersButtonRef.current, {
         opacity: 0,
         y: 50, // Changed from x to y for a more centered entrance
-        duration: 1.5,
+        duration: 1,
         ease: "power2.out"
       });
   });
