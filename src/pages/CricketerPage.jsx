@@ -1,7 +1,7 @@
 // pages/CricktersPage.jsx
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import kebabCase from "lodash/kebabCase";
+import kebabCase from 'lodash/kebabCase';
 import getPlayers from "../data/getPlayers";
 import PlayerDetail from "../components/PlayerDetail";
 import useTitle from "../hooks/useTitle";
