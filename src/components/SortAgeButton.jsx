@@ -3,17 +3,17 @@ import { FaHourglassStart, FaHourglassEnd } from "react-icons/fa";
 import { useSortContext } from '../context/SortContext';
 
 function SortAgeButton() {
-    const { sortType, setSortType, setHighlightState } = useSortContext();
+    const { sortType, updateSortType, setHighlightState } = useSortContext();
 
     const handleAgeSort = () => {
         // When in None or Ascending state, switch to Descending (oldest first)
         if (sortType !== "Age Descending") {
-            setSortType("Age Descending");
+            updateSortType("Age Descending");
             setHighlightState("age");
         } 
         // When in Descending state, switch to Ascending (youngest first)
         else {
-            setSortType("Age Ascending");
+            updateSortType("Age Ascending");
             setHighlightState("age");
         }
     };

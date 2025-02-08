@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import useTitle from "../hooks/useTitle";
 import { useLocation } from "react-router-dom";
 import PlayerBar from "../components/PlayerBar";
@@ -8,19 +8,22 @@ import SortRankButton from "../components/SortRankButton";
 import SortNameButton from "../components/SortNameButton";
 import SortAgeButton from "../components/SortAgeButton";
 import SortTypeButton from "../components/SortTypeButton";
+import ClearSortShowAll from "../components/ClearSortShowAll";
 import { useSortContext } from "../context/SortContext";
+import ReturnButton from "../components/ReturnButton";
+import gsap from "gsap";
 
 function Cricketers() {
-  // States
+  // States remain the same
   const [players, setPlayers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  //sorting states from context
   const { sortType, highlightState } = useSortContext();
-
-  //Path related
   const cricketerListLocation = useLocation();
-
-  //Pagination settings
+  
+  // Create a ref for the container of player bars
+  const playerBarsRef = useRef(null);
+  
+  // Pagination settings
   const itemsPerPage = 10;
   const totalPages = Math.ceil(players.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -29,7 +32,31 @@ function Cricketers() {
     startIndex + itemsPerPage
   );
 
-  // Fetch players from players.js using getPlayers()
+  // Animation function for player bars
+  const animatePlayerBars = () => {
+    // First, set initial states of all player bars
+    gsap.set(".player-bar", {
+      x: -1000, // Start position off-screen to the left
+      opacity: 0,
+      rotateY: -45 // Slight rotation for 3D effect
+    });
+
+    // Create the cascading animation
+    gsap.to(".player-bar", {
+      x: 0, // Final position
+      opacity: 1,
+      rotateY: 0,
+      duration: 0.8,
+      stagger: {
+        amount: 0.5, // Total stagger time for all elements
+        ease: "power2.out"
+      },
+      ease: "power4.out",
+      clearProps: "all" // Clean up properties after animation
+    });
+  };
+
+  // Fetch players data
   useEffect(() => {
     async function fetchPlayers() {
       const data = await getPlayers();
@@ -51,13 +78,21 @@ function Cricketers() {
     fetchPlayers();
   }, []);
 
-  // Set title to show correct heading in browser tab
+  // Trigger animation when displayed players change
+  useEffect(() => {
+    if (displayedPlayers.length > 0) {
+      animatePlayerBars();
+    }
+  }, [displayedPlayers, currentPage, sortType]); // Re-run animation when these dependencies change
+
+  // Title handling
   useTitle({
     currLocation: cricketerListLocation.pathname,
     path: "/all-cricketers",
     docTitle: "Cricketer List - Cricketer App"
   });
 
+  // Sorting function remains the same
   function getSortedPlayers() {
     let sortedPlayers = [...players];
 
@@ -69,13 +104,9 @@ function Cricketers() {
         sortedPlayers.sort((a, b) => a.points - b.points);
         break;
       case "Age Descending":
-        // For age descending, we want oldest first
-        // Since dob is in timestamp format, a smaller number means older age
         sortedPlayers.sort((a, b) => a.dob - b.dob);
         break;
       case "Age Ascending":
-        // For age ascending, we want youngest first
-        // Since dob is in timestamp format, a larger number means younger age
         sortedPlayers.sort((a, b) => b.dob - a.dob);
         break;
       case "Name Ascending":
@@ -112,27 +143,31 @@ function Cricketers() {
           <SortNameButton />
           <SortAgeButton />
           <SortTypeButton />
+          <ClearSortShowAll />
+          <ReturnButton returnText="Return to Home" pathName="/" />
+
         </div>
       </div>
-      <div className="w-[75%] mb-3">
-        {displayedPlayers.map(item =>
-          <PlayerBar
-            key={item.id}
-            playerName={item.name}
-            playerPoints={item.points}
-            dob={item.dob}
-            playerType={item.type}
-            highlightAttribute={highlightState}
-          />
-        )}
+      <div className="w-[75%] mb-3" ref={playerBarsRef}>
+        {displayedPlayers.map((item, index) => (
+          <div key={item.id} className="player-bar">
+            <PlayerBar
+              playerName={item.name}
+              playerPoints={item.points}
+              dob={item.dob}
+              playerType={item.type}
+              highlightAttribute={highlightState}
+            />
+          </div>
+        ))}
       </div>
-      {/* Handle pagination here */}
-      {players.length > 0 &&
+      {players.length > 0 && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={setCurrentPage}
-        />}
+        />
+      )}
     </div>
   );
 }

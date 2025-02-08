@@ -3,16 +3,16 @@ import { RiSortAlphabetAsc, RiSortAlphabetDesc } from "react-icons/ri";
 import { useSortContext } from '../context/SortContext';
 
 function SortNameButton() {
-    const { sortType, setSortType, setHighlightState } = useSortContext();
+    const { sortType, updateSortType, setHighlightState } = useSortContext();
 
     const handleNameSort = () => {
         // When not in descending, switch to descending (Z to A)
         if (sortType !== "Name Descending") {
-            setSortType("Name Descending");
+            updateSortType("Name Descending");
             setHighlightState("name");
         } else {
             // When in descending, switch to ascending (A to Z)
-            setSortType("Name Ascending");
+            updateSortType("Name Ascending");
             setHighlightState("name");
         }
     };

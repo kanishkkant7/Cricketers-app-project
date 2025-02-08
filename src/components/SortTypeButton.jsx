@@ -6,32 +6,32 @@ import { GiWinterGloves } from "react-icons/gi";
 import { useSortContext } from '../context/SortContext';
 
 function SortTypeButton() {
-    const { sortType, setSortType, setHighlightState } = useSortContext();
+    const { sortType, updateSortType, setHighlightState } = useSortContext();
 
     const handleTypeClick = () => {
         // We're creating a cycle between the four player types
         // The logic follows: Batsman -> Bowler -> All Rounder -> Wicket Keeper -> back to Batsman
         switch(sortType) {
             case "Type: Batsman":
-                setSortType("Type: Bowler");
+                updateSortType("Type: Bowler");
                 setHighlightState("type");
                 break;
             case "Type: Bowler":
-                setSortType("Type: All Rounder");
+                updateSortType("Type: All Rounder");
                 setHighlightState("type");
                 break;
             case "Type: All Rounder":
-                setSortType("Type: Wicket Keeper");
+                updateSortType("Type: Wicket Keeper");
                 setHighlightState("type");
                 break;
             case "Type: Wicket Keeper":
-                setSortType("Type: Batsman");
+                updateSortType("Type: Batsman");
                 setHighlightState("type");
                 break;
             default:
                 // This case handles the initial "None" state or any unexpected states
                 // It starts the cycle with Batsman
-                setSortType("Type: Batsman");
+                updateSortType("Type: Batsman");
                 setHighlightState("type");
         }
     };

@@ -3,17 +3,17 @@ import { PiRankingFill, PiRanking } from "react-icons/pi";
 import { useSortContext } from '../context/SortContext';
 
 function SortRankButton() {
-    const { sortType, setSortType, setHighlightState } = useSortContext();
+    const { sortType, updateSortType, setHighlightState } = useSortContext();
 
     const handleSortClick = () => {
         // When in None or Ascending state, switch to Descending
         if (sortType !== "Rank Descending") {
-            setSortType("Rank Descending");
+            updateSortType("Rank Descending");
             setHighlightState("points");
         } 
         // When in Descending state, switch to Ascending
         else {
-            setSortType("Rank Ascending");
+            updateSortType("Rank Ascending");
             setHighlightState("points");
         }
     };

@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      rotate: {
+        '360': '360deg'
+      },
       fontFamily: {
         lexend: ["Lexend", "sans-serif"],
       },
