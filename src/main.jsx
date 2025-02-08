@@ -9,7 +9,7 @@ import { SortProvider } from "./context/SortContext.jsx";
 import CricketerDetail from "./pages/CricketerPage.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  // <StrictMode> not needed anymore as site gets ready for deployment
     <BrowserRouter>
     {/* Sort provider is used here so that the states are accessible 
     {/* by child components of Layout and so on */}
@@ -25,5 +25,5 @@ createRoot(document.getElementById("root")).render(
         </Routes>
       </SortProvider>
     </BrowserRouter>
-  </StrictMode>
+  // </StrictMode>
 );
