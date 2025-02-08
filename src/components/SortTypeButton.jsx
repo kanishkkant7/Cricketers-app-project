@@ -1,3 +1,4 @@
+// components/SortTypeButton.jsx
 import React from 'react';
 import { BiCricketBall } from "react-icons/bi";
 import { GiCricketBat } from "react-icons/gi";

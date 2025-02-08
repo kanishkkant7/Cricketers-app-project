@@ -21,6 +21,7 @@ function App() {
   // To check current location
   const currLocation = useLocation();
 
+  // Using title hook to change browser tab title
   useTitle({
     currLocation: location.pathname,  
     path: "/",                        

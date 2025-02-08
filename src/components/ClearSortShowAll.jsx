@@ -1,5 +1,6 @@
+// components/ClearSortShowAll.jsx
 import React from 'react';
-import { TbFilterOff } from "react-icons/tb"; // We'll use this icon for clearing filters
+import { TbFilterOff } from "react-icons/tb"; // Icon for clearing filters
 import { useSortContext } from '../context/SortContext';
 
 function ClearSortShowAll() {
@@ -9,8 +10,8 @@ function ClearSortShowAll() {
   // Handler to reset sorting and show all players
   const handleClearSort = () => {
     // Update sort type to null or default state to show all players
-    updateSortType("None"); // Using your default sort type
-    setHighlighState("")
+    updateSortType("None"); // Set sort type to none when clearing all filters
+    setHighlighState(""); // No player attribute to highlight as filters are clear
   };
 
   return (

@@ -1,3 +1,4 @@
+// components/PlayerDetail.jsx
 import React from "react";
 import ReturnButton from "./ReturnButton";
 

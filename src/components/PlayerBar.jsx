@@ -1,3 +1,4 @@
+// components/PlayerBar.jsx
 import React from "react";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";

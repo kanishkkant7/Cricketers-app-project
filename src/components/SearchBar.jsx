@@ -1,8 +1,11 @@
+//components/SearchBar.jsx
 import React, { useState, useEffect } from 'react';
 import { HiMagnifyingGlass } from "react-icons/hi2";
-import { useDebounce } from 'use-debounce';
+// Debounce hook to make sure only the most recent request is used to search
+import { useDebounce } from 'use-debounce'; 
 import { useSearch } from '../hooks/useSearch';
 import { useNavigate } from 'react-router-dom';
+// Kebabcase from lodash package to create slugs from player name. For example - Virat Kohli becomes virat-kohli
 import kebabCase from 'lodash/kebabCase';
 
 function SearchBar() {

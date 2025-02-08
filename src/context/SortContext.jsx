@@ -1,21 +1,25 @@
 // context/SortContext.jsx
+
+// Sort context is used to prevent prop drilling in case of Cricketers Page
+// 
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 const SortContext = createContext();
 
 export function SortProvider({ children }) {
   // Initialize state from localStorage or use defaults
+  // Sort type to show what sort type is currently being used
   const [sortType, setSortType] = useState(() => {
     // Try to get saved sort type from localStorage, fallback to default if none exists
     return localStorage.getItem('sortType') || "Rank Descending";
   });
-
+  // highlight state to show through UI what filter is being applied
   const [highlightState, setHighlightState] = useState(() => {
     // Try to get saved highlight state from localStorage, fallback to default if none exists
     return localStorage.getItem('highlightState') || "none";
   });
 
-  // Update localStorage whenever sort type changes
+  // Update localStorage whenever sort type changes. This is done to retain sorttype on refresh
   useEffect(() => {
     localStorage.setItem('sortType', sortType);
   }, [sortType]);

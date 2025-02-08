@@ -1,8 +1,8 @@
+// pages/CricktersPage.jsx
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import kebabCase from "lodash/kebabCase";
 import getPlayers from "../data/getPlayers";
-import ReturnButton from "../components/ReturnButton";
 import PlayerDetail from "../components/PlayerDetail";
 import useTitle from "../hooks/useTitle";
 import PlayerBar from "../components/PlayerBar";
@@ -22,6 +22,7 @@ function CricketerPage() {
     });
   };
 
+  // Player type correction as player type is missing for few players
   const formatPlayerType = type => {
     const typeMap = {
       allRounder: "All Rounder",
@@ -52,6 +53,7 @@ function CricketerPage() {
 
           if (foundCricketer) {
             setCricketer(foundCricketer);
+            // find other similar players in the same useEffect hook to reduce rendering
             const others = allPlayers.filter(
               player =>
                 player.type === foundCricketer.type &&
@@ -102,6 +104,7 @@ function CricketerPage() {
         <div className="w-full text-center mb-12">
           <h2 className="text-white text-5xl font-bold">
             Other{" "}
+            {/* Filtering player types */}
             {cricketer.type === "allRounder"
               ? "All Rounders"
               : cricketer.type === "batsman"
@@ -114,6 +117,7 @@ function CricketerPage() {
 
         {/* Player cards container with consistent width and spacing */}
         <div className="w-[75%] space-y-4">
+        {/* Other similar players with same type */}
           {otherSimilarPlayers
             .filter(player => player.id !== cricketer.id)
             .map(player =>

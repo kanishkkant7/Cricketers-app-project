@@ -11,6 +11,8 @@ import CricketerDetail from "./pages/CricketerPage.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
+    {/* Sort provider is used here so that the states are accessible 
+    {/* by child components of Layout and so on */}
       <SortProvider>
         <Routes>
           <Route path="/" element={<Layout />}>

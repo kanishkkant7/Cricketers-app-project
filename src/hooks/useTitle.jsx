@@ -7,9 +7,11 @@ export default function useTitle({ currLocation, path, docTitle }) {
         const originalTitle = document.title;
 
         if (currLocation === path) {
+            // Set title if path matches
             document.title = docTitle;
         }
         return () => {
+            
             if (currLocation === path) {
                 document.title = originalTitle;
             }
